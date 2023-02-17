@@ -1,10 +1,4 @@
 [
-{"name":"CCD","details":{"name":"Qr","country":"UA"},"localDate":"2023-02-17","price":123576.0}
-,{"name":"CCD","details":{"name":"Qv","country":"UA"},"localDate":"2002-02-17","price":765.0}
-,{"name":"CCD","details":{"name":"Qt","country":"OAE"},"localDate":"2001-02-17","price":3456.0}
-,{"name":"CCD","details":{"name":"Qn","country":"UA"},"localDate":"2002-02-17","price":1214.0}
-,{"name":"CCD","details":{"name":"Qp","country":"UA"},"localDate":"2023-02-17","price":987.0}
-,{"name":"CCD","details":{"name":"AR","country":"USA"},"localDate":"2042-02-17","price":76789.3}
-,{"name":"CCD","details":{"name":"TT","country":"OAE"},"localDate":"2023-02-17","price":5567.0}
+{"name":"CCD","details":{"name":"TT","country":"OAE"},"localDate":"2023-02-17","price":5567.0}
 ,{"name":"CCD","details":{"name":"LEOPARD","country":"UK"},"localDate":"2023-02-17","price":5000000.6}
 ]
