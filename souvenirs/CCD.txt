@@ -1,4 +1,0 @@
-[
-{"name":"CCD","details":{"name":"TT","country":"OAE"},"localDate":"2023-02-17","price":5567.0}
-,{"name":"CCD","details":{"name":"LEOPARD","country":"UK"},"localDate":"2023-02-17","price":5000000.6}
-]

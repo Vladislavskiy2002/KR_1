@@ -17,8 +17,8 @@ import java.util.stream.Stream;
 
 public class ServiceImpl implements Service {
 
-    final String urlProducer = "D:\\IDEA2022\\JAVA_PROJECTS\\GeekForLess\\KR_1\\producers\\";
-    final String urlSouvenir = "D:\\IDEA2022\\JAVA_PROJECTS\\GeekForLess\\KR_1\\souvenirs\\";
+    final String urlProducer = "D:\\IDEA2022\\JAVA_PROJECTS\\GeekForLess\\KR_1\\producers\\";      // шлях до папки де будуть зберігатися виробникі
+    final String urlSouvenir = "D:\\IDEA2022\\JAVA_PROJECTS\\GeekForLess\\KR_1\\souvenirs\\";      // шлях до папки де будуть зберігатися сувеніри
 
     @Override
     public void addSouvenir(Souvenir souvenir) throws IOException {
@@ -29,7 +29,7 @@ public class ServiceImpl implements Service {
             if (addProducer(souvenir.getDetails()) || !isContains) {                                    // якщо виробника з таким іменем неіснує, то ми сворюємо нового, а якщо існує, то метод addProducer повертає false.
                                                                                                         // змінна isContains містить у собі булеве значення яке означає чи існує вже сувенір з таким виробником
                 if (!Files.lines(Paths.get(urlSouvenir + souvenir.getName() + ".txt")).findAny().isPresent()) {   // якщо файл пустий, то ми записуємо у нього шаблон JSON форми
-                    writer1.write("[\n" + souvenir + "]");
+                    writer1.write("[\n" + souvenir + "\n]");
                 }else                                                                                                  // якщо файл не пустий то ми замінюємо замикаючу JSON скобку ']' на кому ','
                                                                                                                         // а потім просто записуємо новий json обьєкт і додаємо до нього в кінець замикаючу JSON скобку
                 {
@@ -57,8 +57,8 @@ public class ServiceImpl implements Service {
     }
         @Override
     public Boolean addProducer(Producer producer) {
-        try (BufferedWriter writter = new BufferedWriter(new FileWriter("D:\\IDEA2022\\JAVA_PROJECTS\\GeekForLess\\KR_1\\producers\\" + producer.getName() + ".txt", true))) {
-            boolean isContains = Files.lines(Paths.get("D:\\IDEA2022\\JAVA_PROJECTS\\GeekForLess\\KR_1\\producers\\" + producer.getName() + ".txt")).anyMatch(e -> e.contains(producer.getName()));
+        try (BufferedWriter writter = new BufferedWriter(new FileWriter(urlProducer + producer.getName() + ".txt", true))) {
+            boolean isContains = Files.lines(Paths.get(urlProducer + producer.getName() + ".txt")).anyMatch(e -> e.contains(producer.getName()));
             if (!isContains) {
                 writter.write(producer.toString());
                 writter.newLine();
@@ -342,13 +342,18 @@ public class ServiceImpl implements Service {
                                 }
                             });
                 }
+            if(counter.get() == 2)
+            {
+                PrintWriter pw = new PrintWriter(temp.toFile());
+                pw.close();
+            }
                 Files.move(temp, input, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
     @Override
-    public void deleteProducer(String name) { // TODO: 15.02.2023 delete producer               // Ми зчитуємо кожну строку з файлу і записуємо у тимчасово створений файл.
+    public void deleteProducer(String name) {                                                   // Ми зчитуємо кожну строку з файлу і записуємо у тимчасово створений файл.
                                                                                                 // якщо у ній співпадає ім'я з заданим в параметрі, то ми просто її не записуємо в тимчасовий файл.
                                                                                                 // Також створений лічильник counter для того, щоб контролювати чи ми не "видалили" першу строку,
                                                                                                 // і якщо це так, то ми видаляємо кОму яка є частиною JSON наступного сувеніру, і після цього наш сувенір стає першим в массиві JSON
@@ -381,6 +386,11 @@ public class ServiceImpl implements Service {
                                     throw new RuntimeException(e);
                                 }
                             });
+                }
+                if(counter.get() == 2)
+                {
+                    PrintWriter pw = new PrintWriter(temp.toFile());
+                    pw.close();
                 }
                 Files.move(temp, input, StandardCopyOption.REPLACE_EXISTING);
             }
