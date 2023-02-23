@@ -1,3 +1,0 @@
-[
-{"name":"QQQQ","details":{"name":"TER","country":"OK"},"localDate":"2023-02-22","price":4567.6}
-]

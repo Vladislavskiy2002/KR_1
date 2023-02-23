@@ -1,3 +1,0 @@
-[
-{"name":"GGG","details":{"name":"ABRAMS","country":"USA"},"localDate":"2023-02-22","price":4000000.6}
-]

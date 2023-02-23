@@ -1,3 +1,0 @@
-[
-{"name":"RRR","details":{"name":"GEV","country":"UK"},"localDate":"2023-02-22","price":123.6}
-]

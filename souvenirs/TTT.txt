@@ -1,3 +1,0 @@
-[
-{"name":"TTT","details":{"name":"VER","country":"LA"},"localDate":"2023-02-22","price":2345.6}
-]

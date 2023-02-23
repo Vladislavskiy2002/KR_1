@@ -317,82 +317,53 @@ public class ServiceImpl implements Service {
             throw new RuntimeException(e);
         }
     }
-    private void deleteSouvenir(String nameSouvenir, String nameProducer) {
+
+    private void refactorFile(Path input, String nameProducer) throws IOException {            // Ми зчитуємо кожну строку з файлу і записуємо у тимчасово створений файл.
+        Path temp = Files.createTempFile("temp", ".txt");                         // якщо у ній співпадає ім'я з заданим в параметрі, то ми просто її не записуємо в тимчасовий файл.
+        Stream<String> lines = Files.lines(input);                                           // Також створений лічильник counter для того, щоб контролювати чи ми не "видалили" першу строку,
+        AtomicReference<Integer> counter = new AtomicReference<>(0);               // і якщо це так, то ми видаляємо кОму яка є частиною JSON наступного сувеніру, і після цього наш сувенір стає першим в массиві JSON
+        try (BufferedWriter writer = Files.newBufferedWriter(temp)) {                       // наприкінці ми за допомогою метода Files.move копіюємо з нашого тимчасового файлу в наш головний файл вже зміненні данні сувенірів
+            lines                                                                           // і в самому кінці ми видаляємо файл нашого виробника
+                    .filter(line -> !line.contains(nameProducer))
+                    .forEach(line -> {
+                        try {
+                            counter.getAndSet(counter.get() + 1);
+                            if(counter.get() ==  2)
+                            {
+                                if(line.charAt(0) == ',') {
+                                    line = line.replaceFirst(",", "");
+                                }
+                            }
+                            writer.write(line);
+                            writer.newLine();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+        }
+        if(counter.get() == 2)              // якщо файл містить лише два символа то він перезаписується в пустий файл
+        {
+            PrintWriter pw = new PrintWriter(temp.toFile());
+            pw.close();
+        }
+        Files.move(temp, input, StandardCopyOption.REPLACE_EXISTING);
+    }
+        private void deleteSouvenir(String nameSouvenir, String nameProducer) {
         try {
             Path input = Paths.get(urlSouvenir + nameSouvenir + ".txt");
-                Path temp = Files.createTempFile("temp", ".txt");
-                Stream<String> lines = Files.lines(input);
-                AtomicReference<Integer> counter = new AtomicReference<>(0);
-                try (BufferedWriter writer = Files.newBufferedWriter(temp)) {
-                    lines
-                            .filter(line -> !line.contains(nameProducer))
-                            .forEach(line -> {
-                                try {
-                                    counter.getAndSet(counter.get() + 1);
-                                    if(counter.get() ==  2)
-                                    {
-                                        if(line.charAt(0) == ',') {
-                                            line = line.replaceFirst(",", "");
-                                        }
-                                    }
-                                    writer.write(line);
-                                    writer.newLine();
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            });
-                }
-            if(counter.get() == 2)
-            {
-                PrintWriter pw = new PrintWriter(temp.toFile());
-                pw.close();
-            }
-                Files.move(temp, input, StandardCopyOption.REPLACE_EXISTING);
+            refactorFile(input,nameProducer);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
     @Override
-    public void deleteProducer(String name) {                                                   // Ми зчитуємо кожну строку з файлу і записуємо у тимчасово створений файл.
-                                                                                                // якщо у ній співпадає ім'я з заданим в параметрі, то ми просто її не записуємо в тимчасовий файл.
-                                                                                                // Також створений лічильник counter для того, щоб контролювати чи ми не "видалили" першу строку,
-                                                                                                // і якщо це так, то ми видаляємо кОму яка є частиною JSON наступного сувеніру, і після цього наш сувенір стає першим в массиві JSON
-                                                                                                // наприкінці ми за допомогою метода Files.move копіюємо з нашого тимчасового файлу в наш головний файл вже зміненні данні сувенірів
-                                                                                                // і в самому кінці ми видаляємо файл нашого виробника
+    public void deleteProducer(String name) {
         try {
             List<Path> filesInFolder = Files.walk(Paths.get(urlSouvenir))
                     .filter(Files::isRegularFile)
                     .collect(Collectors.toList());
             for (Path input : filesInFolder) {
-
-                Path temp = Files.createTempFile("temp", ".txt");
-                Stream<String> lines = Files.lines(input);
-                AtomicReference<Integer> counter = new AtomicReference<>(0);
-                try (BufferedWriter writer = Files.newBufferedWriter(temp)) {
-                    lines
-                            .filter(line -> !line.contains(name))
-                            .forEach(line -> {
-                                try {
-                                    counter.getAndSet(counter.get() + 1);
-                                    if(counter.get() ==  2)
-                                    {
-                                        if(line.charAt(0) == ',') {
-                                            line = line.replaceFirst(",", "");
-                                        }
-                                    }
-                                    writer.write(line);
-                                    writer.newLine();
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            });
-                }
-                if(counter.get() == 2)
-                {
-                    PrintWriter pw = new PrintWriter(temp.toFile());
-                    pw.close();
-                }
-                Files.move(temp, input, StandardCopyOption.REPLACE_EXISTING);
+                refactorFile(input, name);
             }
             File file = new File(urlProducer + name + ".txt");
             file.delete();

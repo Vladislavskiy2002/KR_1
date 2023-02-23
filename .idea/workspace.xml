@@ -6,14 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="14a6a462-ab5c-4adb-840f-0143aa89ad54" name="Changes" comment="some fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/producers/BRAUNI.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producers/GeeksForLess.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producers/LEOPARD.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/producers/TT.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/souvenirs/CCD.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/producers/BREADLY.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/producers/FAS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/producers/GEV.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/producers/TER.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/producers/VER.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/souvenirs/GGG.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/souvenirs/QQQQ.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/souvenirs/RRR.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/souvenirs/SSS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/souvenirs/TTT.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/souvenirs/tarilka.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +114,7 @@
       <workItem from="1676629944290" duration="31223000" />
       <workItem from="1676849968475" duration="147000" />
       <workItem from="1676905423631" duration="753000" />
-      <workItem from="1677064389999" duration="3884000" />
+      <workItem from="1677064389999" duration="7266000" />
     </task>
     <task id="LOCAL-00001" summary="some fix">
       <created>1676649306015</created>
@@ -126,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676649490182</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="some fix">
+      <created>1677084319960</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677084319960</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,7 +167,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/ServiceImpl.java</url>
-          <line>321</line>
+          <line>352</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

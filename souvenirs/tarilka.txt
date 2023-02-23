@@ -1,4 +1,0 @@
-[
-{"name":"tarilka","details":{"name":"TT","country":"OAE"},"localDate":"2002-02-17","price":1234.6}
-,{"name":"tarilka","details":{"name":"LEOPARD","country":"UK"},"localDate":"2023-02-17","price":7000000.6}
-]
